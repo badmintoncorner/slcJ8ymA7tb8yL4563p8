@@ -25,34 +25,6 @@ function openCourse(crsName) {
   document.getElementById(crsName).style.display = "block";  
 }
 
-
-
-// TODAYS
-
-function refresh() { 
-  const today = new Date().getDate();
-  const targetClass = "dt-" + today;
-
-  const container = document.getElementById("todayevent");
-  if (!container) return;
-
-  container.innerHTML = "";
-
-  const dateEl = document.querySelector("." + targetClass);
-  if (!dateEl) return;
-
-  const td = dateEl.closest("td");
-  if (!td) return;
-
-  const eventDivs = td.querySelectorAll(".event");
-  if (!eventDivs.length) return;
-
-  eventDivs.forEach(eventDiv => {
-    const clone = eventDiv.cloneNode(true);
-    container.appendChild(clone);
-  });
-}
-
 // HELPER -------------
 
 function createChip(text, colorClass, extraClass = "") {
@@ -99,95 +71,15 @@ function createCrow(color, status, name, color2, format, color3, type, score, du
 }
 
 
-// DATA ------------------
-
-function setCourse({
-  crsheader = "-",
-  crstitle = "-",
-  crsdetails = "-",
-  professor = "-",
-  crsschedule = "-",
-  tasks = [],
-  works = []
-}) {
-
-  document.getElementById("courseheader").innerHTML = crsheader;
-  document.getElementById("coursetitle").innerHTML = crstitle;
-  document.getElementById("coursedetails").innerHTML = crsdetails;
-  document.getElementById("professor").innerHTML = professor;
-  document.getElementById("courseschedule").innerHTML = crsschedule;
-
-document.querySelectorAll(".trow").forEach(el => el.style.display = "none");
-  document.querySelectorAll(".crow").forEach(el => el.style.display = "none");
-
-  tasks.forEach((task, i) => {
-    const rowNum = i + 1;
-
-    const row = document.getElementById(`trow${rowNum}`);
-    const name = document.getElementById(`tname${rowNum}`);
-    const date = document.getElementById(`tdate${rowNum}`);
-    const link = document.getElementById(`tlink${rowNum}`);
-
-    if (row) row.style.display = "table-row";
-    if (name) name.innerHTML = task.name;
-    if (date) date.innerHTML = task.date;
-    if (link) link.innerHTML = task.link;
-  });
-
-  works.forEach((work, i) => {
-    const rowNum = i + 1;
-
-    const row = document.getElementById(`crow${rowNum}`);
-    const status = document.getElementById(`cstatus${rowNum}`);
-    const name = document.getElementById(`cname${rowNum}`);
-    const due = document.getElementById(`cdue${rowNum}`);
-    const format = document.getElementById(`cformat${rowNum}`);
-    const type = document.getElementById(`ctype${rowNum}`);
-    const score = document.getElementById(`cscore${rowNum}`);
-
-    if (row) row.style.display = "table-row";
-    if (status) status.innerHTML = work.status;
-    if (name) name.innerHTML = work.actname;
-    if (due) due.innerHTML = work.due;
-    if (format) format.innerHTML = work.format;
-    if (type) type.innerHTML = work.type;
-    if (score) score.innerHTML = work.score;
-  });
-
- }
-
-// ACTIVITY ==========
-
-function setActivity({
-  header = "-",
-  subject = "-",
-  due = "-",
-  time = "-",
-  type = { text: "-", class: "c-gray" },
-  instruction = "-"
-}) {
-  document.getElementById("activityheader").innerHTML = header;
-  document.getElementById("activitysubject").innerHTML = subject;
-  document.getElementById("duedate").innerHTML = due;
-  document.getElementById("activitytime").innerHTML = time;
-
-  document.getElementById("activitytype").innerHTML = `
-    <div class="chp ${type.class}">
-      <a class="c-txt2">${type.text}</a>
-    </div>
-  `;
-
-  document.getElementById("activityinstruction").innerHTML = instruction;
-}
-
 // CLEAR ----------------------------
 
 function clearCourse() {
-  document.getElementById("courseheader").innerHTML = "-";
-  document.getElementById("coursetitle").innerHTML = "-";
-  document.getElementById("coursedetails").innerHTML = "-";
-  document.getElementById("professor").innerHTML = "-";
-  document.getElementById("courseschedule").innerHTML = "-";
+  document.getElementById("jvbyzlolhkly").innerHTML = "-";
+  document.getElementById("iuaxykzozrk").innerHTML = "-";
+  document.getElementById("kwczamlmbiqta").innerHTML = "-";
+  document.getElementById("gmizivlamumabmz").innerHTML = "-";
+  document.getElementById("wyvmlzzvy").innerHTML = "-";
+  document.getElementById("lxdabnblqnmdun").innerHTML = "-";
 
 document.querySelectorAll(".trow").forEach(el => el.style.display = "none");
   document.querySelectorAll(".crow").forEach(el => el.style.display = "none");
@@ -202,7 +94,9 @@ document.querySelectorAll(".trow").forEach(el => el.style.display = "none");
 
 // CALENDAR FILLER
 
-const weeks = [
+document.addEventListener("DOMContentLoaded", () => {
+
+ const weeks = [
   document.getElementById("week1"),
   document.getElementById("week2"),
   document.getElementById("week3"),
@@ -272,3 +166,5 @@ for (let w = startWeek; w < weeks.length; w++) {
 }
 
 highlightToday();
+
+});

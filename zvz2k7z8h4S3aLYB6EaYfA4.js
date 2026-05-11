@@ -13,7 +13,7 @@ document.addEventListener("DOMContentLoaded", () => {
         target.innerHTML = html;
       }
     });
-  }});
+  }
 
 /*
 INDIVIDUAL - default/gray/black
@@ -30,7 +30,23 @@ GROUPINGS - green
  PROJECT/PT: Purple
 */
 
+setEvent('jun-08', `
+    <div class="event">
+      <p>🎆 Opening 2026<br>
+      <span class="time">7:00 a.m.</span></p>
+    </div>
+  `);
 
+  setEvent('may-11', `
+    <div class="event" onclick="may11enrolment()">
+      <p>📝 Enrolment SHS<br>
+      <span class="time">8:00 a.m.</span></p>
+    </div>
+  `);
+
+// add here
+
+});
 
 // SHORTCUT:ACTIVITY INFO - group 3 dito ang inyong assigned task
 
@@ -48,6 +64,23 @@ GROUPINGS - green
  MEETING: Black/Gray
  PROJECT/PT: Purple
 */
+
+function may11enrolment() {
+document.getElementById('activitymodal').style.display='block';
+document.getElementById("cagxuxgvyjavcjq").innerHTML = "";
+document.getElementById("cgclpiciqeakpf").innerHTML = "📝 Enrolment SHS";
+  document.getElementById("cgaxhu+dgwkt").innerHTML = "8:00 a.m.";
+document.getElementById("gdmvgjmogvcjk").innerHTML = "May 11, 2026";
+document.getElementById("ukjbqb+ldad").innerHTML = "";
+  document.getElementById("cgaxhu+vgzkb").innerHTML = `
+    <div class="chp c-yellow">
+      <a class="c-txt2">Activity</a>
+    </div>
+  `;
+document.getElementById("fxhcck+tlnz").innerHTML = ""
+}
+
+// add here
 
 // SHORTCUT:COURSES INFO - group 4 dito niyo ilalagay ang courses information
 
@@ -71,9 +104,12 @@ GROUPINGS - green
 function philosophy() {
   document.getElementById('coursemodal').style.display='block';
 
-document.getElementById("courseheader").innerHTML = "🧠 Introduction to the Philosophy of the Human Person";
-  document.getElementById("professor").innerHTML = "Rev. Stephen Anthony Croos, IVE";
-  document.getElementById("courseschedule").innerHTML = "Fri - 10:20am - 11:20am";
+document.getElementById("jvbyzlolhkly").innerHTML = "🧠 Introduction to the Philosophy of the Human Person";
+document.getElementById("iuaxykzozrk").innerHTML = "🧠 Introduction to the Philosophy of the Human Person";
+document.getElementById("kwczamlmbiqta").innerHTML = "";
+document.getElementById("gmizivlamumabmz").innerHTML = createChip("A.Y. 2025-2026 FIRST SEMESTER", "c-gray");
+  document.getElementById("wyvmlzzvy").innerHTML = "Rev. Stephen Anthony Croos, IVE";
+  document.getElementById("lxdabnblqnmdun").innerHTML = "Fri - 10:20am - 11:20am";
 
 document.getElementById('trow1').style.display='table-row';
 document.getElementById("trow1").innerHTML = createTrow("1", "FINAL EXAM REVIEWER", "December 23, 2025", "https://example.com/");
@@ -82,3 +118,42 @@ document.getElementById('crow1').style.display='table-row';
 document.getElementById("crow1").innerHTML = createCrow("green", "● Submit...", "Final Project in Philosophy - Saint Carlo Acutis", "gray", "Individual", "purple", "Project", "90/100", "February 27, 2026");
 
 }
+
+// add here
+
+// MISCELLANEOUS
+
+document.addEventListener("DOMContentLoaded", function () {
+
+  function refresh() { 
+    const now = new Date();
+
+    const day = now.getDate(); // 11
+    const month = now.toLocaleString('en-US', { month: 'short' }).toLowerCase(); 
+    // "May" -> "may"
+
+    const targetClass = month + "-" + day; // "may-11"
+
+    const container = document.getElementById("todayevent");
+    if (!container) return;
+
+    container.innerHTML = "";
+
+    const dateEl = document.querySelector("." + targetClass);
+    if (!dateEl) return;
+
+    const td = dateEl.closest("td");
+    if (!td) return;
+
+    const eventDivs = td.querySelectorAll(".event");
+    if (!eventDivs.length) return;
+
+    eventDivs.forEach(eventDiv => {
+      const clone = eventDiv.cloneNode(true);
+      container.appendChild(clone);
+    });
+  }
+
+  refresh();
+
+});
