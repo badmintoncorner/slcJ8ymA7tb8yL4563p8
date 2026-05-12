@@ -108,6 +108,7 @@ document.getElementById("kwczamlmbiqta").innerHTML = "";
 document.getElementById("gmizivlamumabmz").innerHTML = createChip("A.Y. 2025-2026 FIRST SEMESTER", "c-gray");
   document.getElementById("wyvmlzzvy").innerHTML = "Rev. Stephen Anthony Croos, IVE";
   document.getElementById("lxdabnblqnmdun").innerHTML = "Fri - 10:20am - 11:20am";
+  document.getElementById("ltrlrrzeoyk").innerHTML = "";
 
 document.getElementById('trow1').style.display='table-row';
 document.getElementById("trow1").innerHTML = createTrow("1", "FINAL EXAM REVIEWER", "December 23, 2025", "https://example.com/");
