@@ -70,6 +70,13 @@ function createCrow(color, status, name, color2, format, color3, type, score, du
 `
 }
 
+// APP MODE ------------
+
+function light() { document.getElementById("app").classList.add("light"); document.getElementById("app").classList.remove("dark"); document.getElementById('dark-icn').style.display='none'; document.getElementById('light-icn').style.display='block'; } 
+
+function dark() { document.getElementById("app").classList.add("dark"); document.getElementById("app").classList.remove("light");document.getElementById('dark-icn').style.display='block'; document.getElementById('light-icn').style.display='none'; }
+
+
 
 // CLEAR ----------------------------
 
@@ -95,76 +102,81 @@ document.querySelectorAll(".trow").forEach(el => el.style.display = "none");
 // CALENDAR FILLER
 
 document.addEventListener("DOMContentLoaded", () => {
+  const rows = [
+    document.getElementById("rw1"),
+    document.getElementById("rw2"),
+    document.getElementById("rw3"),
+    document.getElementById("rw4")
+  ];
 
- const weeks = [
-  document.getElementById("week1"),
-  document.getElementById("week2"),
-  document.getElementById("week3"),
-  document.getElementById("week4"),
-  document.getElementById("week5")
-];
+  const months = [
+    "jan", "feb", "mar", "apr", "may", "jun",
+    "jul", "aug", "sep", "oct", "nov", "dec"
+  ];
 
-const today = new Date();
+  const monthNames = [
+    "Jan", "Feb", "Mar", "Apr", "May", "Jun",
+    "Jul", "Aug", "Sep", "Oct", "Nov", "Dec"
+  ];
 
-const months = ["jan","feb","mar","apr","may","jun","jul","aug","sep","oct","nov","dec"];
+  const today = new Date();
+  today.setHours(0, 0, 0, 0);
 
-function getStartOfWeek(date) {
-  const start = new Date(date);
-  const day = start.getDay();
-  start.setDate(start.getDate() - day);
-  return start;
-}
+  const startOfWeek = new Date(today);
+  startOfWeek.setDate(today.getDate() - today.getDay());
 
-function getWeekOfMonth(date) {
-  const firstDay = new Date(date.getFullYear(), date.getMonth(), 1);
-  const offset = firstDay.getDay();
-  return Math.floor((date.getDate() + offset - 1) / 7);
-}
-
-function highlightToday() {
-  const d = today.getDate();
-  const m = months[today.getMonth()];
-
-  document.querySelectorAll(".date").forEach(el => {
-    el.classList.remove("slct-dt");
-
-    const cls = [...el.classList].find(c => c.startsWith(m + "-"));
-    if (!cls) return;
-
-    const day = parseInt(cls.split("-")[1]);
-    if (day === d) el.classList.add("slct-dt");
-  });
-}
-
-const startWeek = getWeekOfMonth(today);
-let currentDate = getStartOfWeek(today);
-
-for (let w = startWeek; w < weeks.length; w++) {
-  const row = weeks[w];
-  if (!row) continue;
-
-  row.innerHTML = "";
-
-  for (let d = 0; d < 7; d++) {
-    const day = currentDate.getDate();
-    const month = months[currentDate.getMonth()];
-    const dow = currentDate.getDay();
-
-    const td = document.createElement("td");
-    td.className = "wd-day" + ((dow === 0 || dow === 6) ? " wknd" : "");
-
-    td.innerHTML = `
-      <h6 class="k6 j9">
-        <label class="date ${month}-${String(day).padStart(2, '0')}">${day}</label>
-      </h6>
-      <div class="fl"></div>
-    `;
-
-    row.appendChild(td);
-    currentDate.setDate(currentDate.getDate() + 1);
+  function pad(num) {
+    return String(num).padStart(2, "0");
   }
-}
 
-highlightToday();
+  for (let row = 0; row < 4; row++) {
+    const tr = rows[row];
 
+    for (let day = 0; day < 7; day++) {
+      const current = new Date(startOfWeek);
+
+      current.setDate(startOfWeek.getDate() + (row * 7) + day);
+      current.setHours(0, 0, 0, 0);
+
+      const dateNum = current.getDate();
+      const paddedDate = pad(dateNum);
+
+      const monthCode = months[current.getMonth()];
+      const monthShort = monthNames[current.getMonth()];
+
+      const prev = new Date(current);
+      prev.setDate(current.getDate() - 1);
+
+      let displayText = dateNum;
+
+      if (current.getMonth() !== prev.getMonth()) {
+        displayText = `${monthShort} ${dateNum}`;
+      }
+
+      let tdClasses = "wd-day";
+
+      if (day === 0 || day === 6) {
+        tdClasses += " wknd";
+      }
+
+      let labelClasses = `date ${monthCode}-${paddedDate}`;
+
+      if (
+        current.getDate() === today.getDate() &&
+        current.getMonth() === today.getMonth() &&
+        current.getFullYear() === today.getFullYear()
+      ) {
+        labelClasses += " slct-dt";
+      }
+
+      tr.innerHTML += `
+        <td class="${tdClasses}">
+          <h6 class="k6 j9">
+            <label class="${labelClasses}">${displayText}</label>
+          </h6>
+          <div class="fl"></div>
+        </td>
+      `;
+    }
+  }
 });
