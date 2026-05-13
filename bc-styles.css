@@ -76,6 +76,9 @@ font-weight: 400!important;
 height: 150px
 }
 
+.lh2 {line-height: 2.3!important;}
+
+
     .fl {
         min-height: 150px;
     } .spr {height: 2px;}
@@ -92,9 +95,17 @@ height: 150px
         margin: 16px;
     }
 
+td, th {vertical-align: top;}
+
+#drpd1 {background-color: white;}
+
+.dark #drpd1 {background-color: #1f2937;} .pic {border: 3px white solid} .dark .pic {border: 3px #151d2e solid}
+
     .cntr {
         border-radius: 15px;padding-left: 20px;padding-top: 10px;padding-bottom: 10px;padding-right: 20px;
     }
+
+.s41 {padding-left:0px!important;padding-top:0px;} .ev2 {border-radius: 15px}
 
     .grey {
         color: #808080
@@ -191,8 +202,10 @@ width:655px;transition: 0.2s;
 }
 
 .bccard-cover {
-height: 115px;width: 100%;border-radius: 15px;transition: 0.2s;background-size:cover;
+height: 115px;width: 100%;border-radius: 15px;transition: 0.2s;background-size:cover;border-bottom-left-radius: 0px!important;border-bottom-right-radius: 0px!important;
 }
+
+.bccard-content {margin-left: 15px!important; }
     
     @media (min-width: 768px) {
 
