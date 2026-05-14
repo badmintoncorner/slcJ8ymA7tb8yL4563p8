@@ -180,3 +180,19 @@ document.addEventListener("DOMContentLoaded", () => {
     }
   }
 });
+
+document.getElementById("search-grid").addEventListener("input", function () {
+  const search = this.value.toLowerCase();
+  const items = document.querySelectorAll(".grid-option");
+
+  items.forEach(function (item) {
+    const h6 = item.querySelector("h6");
+    const text = h6.textContent.toLowerCase();
+
+    if (text.includes(search)) {
+      item.style.display = "block";
+    } else {
+      item.style.display = "none";
+    }
+  });
+});
